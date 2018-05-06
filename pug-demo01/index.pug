@@ -1,0 +1,88 @@
+//-安装指令
+    npm install -g pug
+    脚手架安装指令
+    npm install -g pug-cli
+//-运行指令（热加载）
+ pug -P -w index.pug
+ 单次运行指令
+ pug index.pug
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Document
+        block scripts
+            script(src="/jquery.js")
+    body
+        a.button(href="wwww.baidu.com" title="baidu")
+        p.
+            jsnakm
+            nus
+            cc
+        p
+            |dfas <strong>hey</strong>
+            strong hey man
+            |ss
+        -var Pug="Hello world"
+        title #{Pug}
+        -var htmlData='<strong>sdt</strong>'
+        //- p!=htmlData不转义字符
+        p #{htmlData}
+        p=data
+        -var array=[1,2,3,4]
+        //- -var imooc=4
+        //- -for (var k in imooc)
+        //-     p=array[k]
+        each k in array
+            p= k
+        //- -while
+        -var array2=[1,2]
+                if array2.length>2
+                    p true
+                else
+                    p false
+        -var array3=[1]
+            unless array3.length>2
+                p hello
+        -var name='java'
+        case name
+            when 'java': p Hi,java
+            when 'pug': p Hi,pug
+            default
+                p Hi
+        mixin sayHi
+            p hello everyone
+        // 使用
+        +sayHi
+        +sayHi
+        mixin pet(name)
+            li.pet= name
+        ul
+            +pet('cat')
+            +pet('dog')
+        mixin article(title)
+            .article
+                .article-wrapper
+                    h1= title
+                    if block
+                        block
+                    else
+                        p 没有提供任何内容
+        +article('Hello world')
+
+        +article('Hello world')
+            p 这是我
+            p lalla 
+        mixin link(href,name)
+            a(class!=attributes.class href=href)= name
+        +link('/foo','foo')(class='btn')
+        mixin list(id, ...items)
+            ul(id=id)
+                each item in items
+                    li= item
+        +list('my-list',1,2,3,4,5)
+        -var values=[1,2];
+        ul
+            each val in values.length ? values : ['没有内容']
+                li= val
