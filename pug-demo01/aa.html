@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    // var aa = {
+    //     color: "red",
+    //     getColor: function () {
+    //         return this.color;
+    //     }
+    // };
+    // var getColor = aa.getColor;
+    // var color = "blue";
+    // console.log(aa.getColor());
+    // console.log(getColor());
+    // console.log(window.color)
+    window.name = "window";
+    document.name = "document";
+    function sum() {
+        console.log(this.name)
+    }
+    function fn() {
+        console.log(this.name);
+    }
+    var obj = { name: 'ice' }
+    Function.prototype.myCall = function (context) {
+        eval(this.toString().replace("this", "obj"));
+        this();
+    }
+    // fn.myCall(obj);
+    sum.call(this)
+    sum.myCall(obj);
+    sum.call(obj);
+
+</script>
+
+</html>
